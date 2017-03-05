@@ -1,18 +1,32 @@
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://na-hackathon-api.arrayent.io:443/v3/devices/33554453",
+var http = require("https");
+
+var options = {
   "method": "PUT",
+  "hostname": "na-hackathon-api.arrayent.io",
+  "port": "443",
+  "path": "/v3/devices/33554453",
   "headers": {
     "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJhMGZlYTc2MC0wMWM4LTExZTctYWU0Ni01ZmMyNDA0MmE4NTMiLCJlbnZpcm9ubWVudF9pZCI6Ijk0OGUyY2YwLWZkNTItMTFlNi1hZTQ2LTVmYzI0MDQyYTg1MyIsInVzZXJfaWQiOiI5MDAwMTA5Iiwic2NvcGVzIjoie30iLCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwiaWF0IjoxNDg4NzM0NzQyLCJleHAiOjE0ODk5NDQzNDJ9.EZXWTsdfwd7UaNQfYRefCPlSjGzng7LHoyTU01JsKX9S1HTJGgluuSJ-CFSI4tkaiJ8IKCM8ycSn3W__sTcIFQ",
     "content-type": "application/json",
     "cache-control": "no-cache",
-    "postman-token": "343874bd-06bc-7b5d-1f75-5820bb2cafb8"
-  },
-  "processData": false,
-  "data": "[{\"DeviceAction\": \"led_behavior=28\" },{\"DeviceAction\": \"led_mode=1\" }, {\"DeviceAction\": \"led_color=1,1,1,1,1\" }]"
-}
+    "postman-token": "d7bde53f-db0b-a376-7a8c-2010b394dd9e"
+  }
+};
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
+
+req.write(JSON.stringify([ { DeviceAction: 'led_behavior=28' },
+  { DeviceAction: 'led_mode=1' },
+  { DeviceAction: 'led_color=1,1,1,1,1' } ]));
+req.end();
