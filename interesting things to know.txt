@@ -2,5 +2,8 @@ Dont rename the screenshot!!!
 Just dont
 
 
-For the arraynet - Client ID: 8f3af7d0-0174-11e7-9207-b5c3b663f6a4
-For the Client Secret: 39369c126d93e687f049dc3799bc9a678f603d54
+For the arraynet - Client ID: a0fea760-01c8-11e7-ae46-5fc24042a853
+For the Client Secret: be46a7714d550a0b46c4ba99359142fab3960458
+
+Login Name of our device: user-hac00333348
+PW: HAC00333348-5D
