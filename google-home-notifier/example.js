@@ -23,7 +23,26 @@ app.post('/google-home-notifier', urlencodedParser, function (req, res) {
     res.send('Please POST "text=Time to say your prayers"');
   }
 
-})
+});
+
+app.get('/alarm1', urlencodedParser, function (req, res) {
+  var url = ''; //Call to prayer mp3
+  // if (!req.body) return res.sendStatus(400);
+  // console.log(req.body);
+  // var text = req.body.text;
+  // if (text){
+    var text = "The next prayer time is 3:36 PM";
+    googlehome.notifyMp3(url, function(res) {
+      console.log(res);
+    });
+    res.send(deviceName + ' will play: ' + url + '\n');
+  // }else{
+  //   res.send('Please POST "text=Time to say your prayers"');
+  // }
+
+});
+
+
 
 app.listen(serverPort, function () {
   ngrok.connect(serverPort, function (err, url) {
