@@ -1,0 +1,18 @@
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://na-hackathon-api.arrayent.io:443/v3/devices/33554453",
+  "method": "PUT",
+  "headers": {
+    "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJhMGZlYTc2MC0wMWM4LTExZTctYWU0Ni01ZmMyNDA0MmE4NTMiLCJlbnZpcm9ubWVudF9pZCI6Ijk0OGUyY2YwLWZkNTItMTFlNi1hZTQ2LTVmYzI0MDQyYTg1MyIsInVzZXJfaWQiOiI5MDAwMTA5Iiwic2NvcGVzIjoie30iLCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwiaWF0IjoxNDg4NzM0NzQyLCJleHAiOjE0ODk5NDQzNDJ9.EZXWTsdfwd7UaNQfYRefCPlSjGzng7LHoyTU01JsKX9S1HTJGgluuSJ-CFSI4tkaiJ8IKCM8ycSn3W__sTcIFQ",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "48fdaf14-c9f1-7917-7be4-176833d326e5"
+  },
+  "processData": false,
+  "data": "[{\"DeviceAction\": \"led_mode=1\" }, {\"DeviceAction\": \"led_color=0,0,0,0,0\" }]"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
