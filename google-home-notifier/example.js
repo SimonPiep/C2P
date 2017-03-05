@@ -26,7 +26,7 @@ app.post('/google-home-notifier', urlencodedParser, function (req, res) {
 });
 
 app.get('/alarm1', urlencodedParser, function (req, res) {
-  var url = ''; //Call to prayer mp3
+  var url = 'https://simonpiep.github.io/C2P/prayersmall.mp3'; //Call to prayer mp3
   // if (!req.body) return res.sendStatus(400);
   // console.log(req.body);
   // var text = req.body.text;
