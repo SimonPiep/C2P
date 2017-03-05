@@ -2,6 +2,11 @@ var Client = require('castv2-client').Client;
 var DefaultMediaReceiver = require('castv2-client').DefaultMediaReceiver;
 var mdns = require('mdns');
 var googletts = require('google-tts-api');
+// var sequence = [
+//   mdns.rst.DNSServiceResolve()
+//   , mdns.rst.getaddrinfo({families: [4] })
+// ];
+// var browser = mdns.createBrowser(mdns.tcp('googlecast'),{resolverSequence: sequence});
 var browser = mdns.createBrowser(mdns.tcp('googlecast'));
 var deviceAddress;
 var device = function(name) {
@@ -25,6 +30,26 @@ var notify = function(message, callback) {
   }else {
     getSpeechUrl(message, deviceAddress, function(res) {
       callback(res);
+    });
+  }
+}
+
+var notifyMp3 = function(url, callback) {
+  if (!deviceAddress){
+    browser.start();
+    browser.on('serviceUp', function(service) {
+      console.log('Device "%s" at %s:%d', service.name, service.addresses[0], service.port);
+      if (service.name.includes(device.replace(' ', '-'))){
+        deviceAddress = service.addresses[0];
+        onDeviceUp(deviceAddress, url, function(res){
+          callback(res)
+        });
+      }
+      browser.stop();
+    });
+  }else {
+    onDeviceUp(deviceAddress, url, function(res){
+      callback(res)
     });
   }
 }
@@ -64,3 +89,4 @@ var onDeviceUp = function(host, url, callback) {
 
 exports.device = device;
 exports.notify = notify;
+exports.notifyMp3 = notifyMp3;
